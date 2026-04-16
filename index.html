@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biblioteca</title>
+    <style>
+        body { font-family: Arial; margin:20px; }
+        form { margin-bottom:20px; border:1px solid #ccc; padding:10px; }
+        table { border-collapse: collapse; width:100%; }
+        th, td { border:1px solid #ccc; padding:8px; }
+    </style>
+</head>
+<body>
+
+<h2>Nuovo Libro</h2>
+<form method="POST">
+    <input name="titolo" placeholder="Titolo" required>
+    <input name="anno" placeholder="Anno">
+    <input name="isbn" placeholder="ISBN">
+
+    <select name="autore">
+        {{AUTORI}}
+    </select>
+
+    <button name="nuovo_libro">Inserisci</button>
+</form>
+
+<h2>Nuovo Prestito</h2>
+<form method="POST">
+    <select name="libro">
+        {{LIBRI}}
+    </select>
+
+    <select name="utente">
+        {{UTENTI}}
+    </select>
+
+    <button name="nuovo_prestito">Inserisci</button>
+</form>
+
+<h2>Prestiti per Utente</h2>
+<form method="GET">
+    <select name="utente_id">
+        {{UTENTI}}
+    </select>
+    <button>Mostra</button>
+</form>
+
+<table>
+<tr><th>Libro</th><th>Stato</th><th>Azione</th></tr>
+{{PRESTITI}}
+</table>
+
+</body>
+</html>
