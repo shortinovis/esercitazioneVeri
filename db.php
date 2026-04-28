@@ -1,7 +1,10 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "biblioteca");
 
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
+try {
+    $conn = new PDO("mysql:host=localhost;dbname=biblioteca", "root", "");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die("Connessione fallita: " . $e->getMessage());
 }
+
 ?>

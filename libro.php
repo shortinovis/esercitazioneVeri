@@ -1,13 +1,18 @@
 <?php
+
 class Libro {
 
     public static function getAll($conn) {
-        return $conn->query("SELECT * FROM Libri");
+        $sql = "SELECT * FROM Libri";
+        return $conn->query($sql);
     }
 
     public static function create($conn, $titolo, $anno, $isbn, $autore) {
-        $conn->query("INSERT INTO Libri (titolo, anno_pubblicazione, isbn, id_autore)
-                      VALUES ('$titolo','$anno','$isbn','$autore')");
+        $sql = "INSERT INTO Libri (titolo, anno_pubblicazione, isbn, id_autore)
+                VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$titolo, $anno, $isbn, $autore]);
     }
 }
+
 ?>
